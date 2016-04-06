@@ -171,6 +171,7 @@
     <Content Include="Views\Students\Create.cshtml" />
     <Content Include="Views\User\Hello.cshtml" />
     <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoNav.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
