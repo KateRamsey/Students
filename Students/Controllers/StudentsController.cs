@@ -14,9 +14,9 @@ namespace Students.Controllers
         {
             var students = new List<Student>()
             {
-                new Student() {Age=30, FirstName = "Kate", LastName = "Ramsey", Gender = "Female", Id = 1},
-                new Student() {Age=23, FirstName = "Zach", LastName = "Ballard", Gender = "Male", Id = 2},
-                new Student() {Age=34, FirstName = "Daniel", LastName = "Pollock", Gender = "Male", Id = 3}
+                new Student() {Age=30, FirstName = "Kate", LastName = "Ramsey", Gender = Gender.Female, Id = 1},
+                new Student() {Age=23, FirstName = "Zach", LastName = "Ballard", Gender = Gender.Male, Id = 2},
+                new Student() {Age=34, FirstName = "Daniel", LastName = "Pollock", Gender = Gender.Male, Id = 3}
             };
             return View(students);
         }
