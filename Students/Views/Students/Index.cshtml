@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Students.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index of Students</h2>
+
+
+
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(modelItem => item);
+}
+
+
