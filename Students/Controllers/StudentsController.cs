@@ -12,13 +12,19 @@ namespace Students.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var students = new List<Student>()
+            if (Session["students"] == null)
             {
-                new Student() {Age=30, FirstName = "Kate", LastName = "Ramsey", Gender = Gender.Female, Id = 1},
-                new Student() {Age=23, FirstName = "Zach", LastName = "Ballard", Gender = Gender.Male, Id = 2},
-                new Student() {Age=34, FirstName = "Daniel", LastName = "Pollock", Gender = Gender.Male, Id = 3}
-            };
-            return View(students);
+                var students = new List<Student>()
+                 {
+                new Student() {Age = 30, FirstName = "Kate", LastName = "Ramsey", Gender = Gender.Female, Id = 1},
+                new Student() {Age = 23, FirstName = "Zach", LastName = "Ballard", Gender = Gender.Male, Id = 2},
+                new Student() {Age = 34, FirstName = "Daniel", LastName = "Pollock", Gender = Gender.Male, Id = 3}
+                  };
+                Session["students"] = students;
+            }
+
+
+            return View(Session["students"]);
         }
 
         [HttpGet]
@@ -30,7 +36,23 @@ namespace Students.Controllers
         [HttpPost]
         public ActionResult Create(Student newStudent)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View("Create", newStudent);
+            }
+
+            if (Session["students"] == null)
+            {
+                Session["students"] = newStudent;
+            }
+            else
+            {
+                List<Student> sessionStudents = (List<Student>)Session["students"];
+                sessionStudents.Add(newStudent);
+                Session["students"] = sessionStudents;
+            }
+            return RedirectToAction("Index");
+
         }
 
         [HttpGet]
