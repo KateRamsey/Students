@@ -10,6 +10,7 @@ namespace Students.Controllers
     public class UserController : Controller
     {
         [HttpGet]
+        [Route("user/{hello}")]
         public ActionResult Hello()
         {
             if (Request.Cookies["name"] != null)
@@ -25,7 +26,6 @@ namespace Students.Controllers
         [HttpPost]
         public ActionResult Hello(User user)
         {
-            //Write a cookie.
             HttpCookie aCookie = new HttpCookie("name");
             aCookie.Value = user.Name;
             Response.Cookies.Add(aCookie);

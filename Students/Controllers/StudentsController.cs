@@ -43,7 +43,8 @@ namespace Students.Controllers
 
             if (Session["students"] == null)
             {
-                Session["students"] = newStudent;
+                var s = new List<Student> {newStudent};
+                Session["students"] = s;
             }
             else
             {
@@ -56,6 +57,7 @@ namespace Students.Controllers
         }
 
         [HttpGet]
+        [Route("students/edit/{stuID}")]
         public ActionResult Edit(int stuId)
         {
             return View();
