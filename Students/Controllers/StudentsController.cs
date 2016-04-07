@@ -59,16 +59,41 @@ namespace Students.Controllers
         }
 
         [HttpGet]
-        [Route("students/edit/{stuID}")]
-        public ActionResult Edit(int stuId)
+        [Route("students/edit/{Id}")]
+        public ActionResult Edit(int Id)
         {
-            return View();
+            List<Student> sessionStudents = (List<Student>)Session["students"];
+            if (sessionStudents == null)
+            {
+                return RedirectToAction("Create");
+            }
+            foreach (var s in sessionStudents.Where(s => s.Id == Id))
+            {
+                return View(s);
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public ActionResult Edit(Student editStudent)
         {
-            return View();
+            List<Student> sessionStudents = (List<Student>)Session["students"];
+            if (sessionStudents == null)
+            {
+                return RedirectToAction("Create");
+            }
+            foreach (var s in sessionStudents.Where(s => s.Id == editStudent.Id))
+            {
+                s.Age = editStudent.Age;
+                s.FirstName = editStudent.FirstName;
+                s.LastName = editStudent.LastName;
+                s.Gender = editStudent.Gender;
+            }
+
+            Session["students"] = sessionStudents;
+
+            return RedirectToAction("Index");
         }
     }
 }
