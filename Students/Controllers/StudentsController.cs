@@ -43,12 +43,14 @@ namespace Students.Controllers
 
             if (Session["students"] == null)
             {
+                newStudent.Id = 1;
                 var s = new List<Student> {newStudent};
                 Session["students"] = s;
             }
             else
             {
                 List<Student> sessionStudents = (List<Student>)Session["students"];
+                newStudent.Id = sessionStudents.Max(t => t.Id) + 1;
                 sessionStudents.Add(newStudent);
                 Session["students"] = sessionStudents;
             }
