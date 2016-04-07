@@ -21,7 +21,7 @@ namespace Students.Models
         public string LastName { get; set; }
 
         [Required]
-        public Gender Gender { get; set; }
+        public string Gender { get; set; }
         public int Age { get; set; }
     }
 }
