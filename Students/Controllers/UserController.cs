@@ -15,7 +15,7 @@ namespace Students.Controllers
         {
             if (Request.Cookies["name"] != null)
             {
-                var name = Request.Cookies["name"].ToString();
+                string name = Request.Cookies["name"].Value;
                 User user = new User() {Name = name};
                 return View(user);
             }
